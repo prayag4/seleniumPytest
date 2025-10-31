@@ -8,6 +8,9 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
 
+#poetry run pytest -m smoke
+@pytest.mark.smoke
 def test_google_homepage():
     driver.get("https://www.google.com")
+    print("opening google")
     assert "Google" in driver.title
