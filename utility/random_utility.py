@@ -75,7 +75,7 @@ class RandomUtility:
         return date_obj.strftime("%d/%m/%Y")
 
     @staticmethod
-    def get_random_date() -> tuple:
+    def generate_random_date() -> list:
         now = datetime.now()
         delta_days = random.randint(-730, 730)  # ± 2 years
         random_date = now + timedelta(days=delta_days)
@@ -83,10 +83,10 @@ class RandomUtility:
         month = RandomUtility.months[random_date.month - 1]
         year = str(random_date.year)
         formatted = RandomUtility.format_date_to_ddmmyyyy(random_date)
-        return ([day, month, year], formatted)
+        return [[day, month, year], formatted]
 
     @staticmethod
-    def get_random_date_range() -> tuple:
+    def generate_random_date_range() -> list:
         now = datetime.now()
         start_delta_days = random.randint(-730, 730)
         start_date = now + timedelta(days=start_delta_days)
@@ -98,10 +98,10 @@ class RandomUtility:
 
         start_formatted = RandomUtility.format_date_to_ddmmyyyy(start_date)
         end_formatted = RandomUtility.format_date_to_ddmmyyyy(end_date)
-        return (start_array, start_formatted, end_array, end_formatted)
+        return [start_array, start_formatted, end_array, end_formatted]
 
     @staticmethod
-    def get_random_lat_long() -> str:
+    def generate_random_lat_long() -> str:
         latitude = random.uniform(-90, 90)
         longitude = random.uniform(-180, 180)
         return f"{latitude:.6f},{longitude:.6f}"

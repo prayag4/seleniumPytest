@@ -419,6 +419,24 @@ pygments = ">=2.7.2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-check"
+version = "2.6.0"
+description = "A pytest plugin that allows multiple failures per test."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pytest_check-2.6.0-py3-none-any.whl", hash = "sha256:a9735020dc0f0219b8a5298d7f90cf6d1f6fe34b709b9ecbb9e0f49393ebab38"},
+    {file = "pytest_check-2.6.0.tar.gz", hash = "sha256:9be4c59a09827129109148c85d7b5964b57f0a5ced1b619459ca30e6f463ca42"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0"
+
+[package.extras]
+dev = ["build", "tox", "tox-uv"]
+
+[[package]]
 name = "python-dotenv"
 version = "1.1.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -633,4 +651,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14"
-content-hash = "4d73bd7b3ae94adf5a46cdcb74857626e3f229ac556fd71ddd38161f14cc8fd6"
+content-hash = "1b1a240662f0d614fecbc9935610d0d82b96504468369f546074945032c2bcbd"
