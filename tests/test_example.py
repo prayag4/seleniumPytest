@@ -14,3 +14,6 @@ def test_google_homepage():
     driver.get("https://www.google.com")
     print("opening google")
     assert "Google" in driver.title
+
+    '''to generate report pytest --html=report.html --self-contained-html  
+    pip install pytest-html'''
