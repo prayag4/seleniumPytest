@@ -69,11 +69,15 @@ class BasePage:
 
     def wait_for_table_cell_text(self, cell_index: int, expected_text: str) -> str:
         return self.wait.until(lambda d: (
-            text := d.find_elements(By.CSS_SELECTOR, "table tr:last-child td")[cell_index].text
-        ) if len(d.find_elements(By.CSS_SELECTOR, "table tr:last-child td")) > cell_index and text == expected_text else None)
+            (text := d.find_elements(By.CSS_SELECTOR, "table tr:last-child td")[cell_index].text)
+            if len(d.find_elements(By.CSS_SELECTOR, "table tr:last-child td")) > cell_index and
+            d.find_elements(By.CSS_SELECTOR, "table tr:last-child td")[cell_index].text == expected_text
+            else None
+        ))
+
 
     def get_all_field_names_in_table(self) -> list[str]:
-        elements = self.driver.find_elements(By.CSS_SELECTOR, "table thead tr th")
+        elements = self.wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR,"table thead tr th")))
         return [el.text for el in elements]
 
     def get_options_attribute_value(self, selector: tuple) -> list[str]:

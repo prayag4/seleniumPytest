@@ -24,3 +24,12 @@ def browser(request):
 @pytest.fixture(scope="session")
 def base_url(request):
     return request.config.getoption("--url")
+
+def pytest_itemcollected(item):
+    """Show test docstring as the test name in the HTML report."""
+    if item.function.__doc__:
+        item._nodeid = item.function.__doc__.strip()
+
+def pytest_html_report_title(report):
+    report.title = "CRUD Automation Test Report"
+   
