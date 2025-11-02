@@ -16,4 +16,4 @@ def test_google_homepage():
     assert "Google" in driver.title
 
     '''to generate report pytest --html=report.html --self-contained-html  
-    pip install pytest-html'''
+    pip install pytest-html or poetry add pytest-html'''
