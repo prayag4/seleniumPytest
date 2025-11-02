@@ -131,5 +131,17 @@ def test_crud(base_url):
     wait.until(EC.element_to_be_clickable(time_picker_selector)).send_keys(form_data["time"])
     wait.until(EC.element_to_be_clickable(location_selector)).send_keys(form_data["location"])
 
-
+    #submit the record
     wait.until(EC.element_to_be_clickable(save_button_selector)).click()
+
+    #verify the record
+    single_line_text = form_data["single_line"]
+    single_line_actual_text = wait.until(lambda d:((tdBoxes := d.find_elements(By.CSS_SELECTOR,"table tr:last-child td")) and len(tdBoxes) > 1 
+                        and tdBoxes[1].text != "" and tdBoxes[1].text == single_line_text and tdBoxes[1].text) or None)
+    check.equal(single_line_text,single_line_actual_text,"Verify singleline value")
+
+    #verify the record in edit screen 
+    (driver.find_elements(By.CSS_SELECTOR,"table tr:last-child td"))[3].find_element(By.CSS_SELECTOR,".bg-yellow-500").click()
+    multi_line_text = form_data["multi_line"]
+    multi_line_actual_text = wait.until(lambda d:((text := d.find_element(*multi_line_selector).get_attribute("value")) and text != None and text.strip()!="" and text) or None)
+    check.equal(multi_line_text,multi_line_actual_text,"verify multiline value")
